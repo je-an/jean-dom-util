@@ -27,6 +27,52 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
             }
             var bounds = element.getBoundingClientRect();
             return ((bounds.top + bounds.height) > 0) && bounds.top < window.innerHeight;
+        },
+        /**
+         * gets the child for the matched id
+         * @param {HTMLElement} element - the element which childs shall be searched
+         * @param {String} id - the id of the child which shall be found
+         * @returns {HTMLElement|null} - the matched element or null if no element is found for the
+         *                               provided id 
+         */
+        getChildById: function (element, id) {
+            var i, childs = element.children, length = childs.length, child, result = null;
+            for (i = 0; i < length; i++) {
+                child = childs[i];
+                if (child.id === id) {
+                    return child;
+                }
+            }
+            for (i = 0; i < length; i++) {
+                result = this.getChildById(childs[i], id);
+                if (TypeCheck.isDefined(result)) {
+                    return result;
+                }
+            }
+            return null;
+        },
+        /**
+         * Gets the first child for the matched class
+         * @param {HTMLElement} element - the element which childs shall be searched
+         * @param {String} className - the class name of the child which shall be found
+         * @returns {HTMLElement|null} - the matched element or null if not element is found
+         *                               for the provided class name
+         */
+        getChildByClass: function (element, className) {
+            var i, childs = element.children, length = childs.length, child, result = null;
+            for (i = 0; i < length; i++) {
+                child = childs[i];
+                if (child.classList.contains(className)) {
+                    return child;
+                }
+            }
+            for (i = 0; i < length; i++) {
+                result = this.getChildByClass(childs[i], className);
+                if (TypeCheck.isDefined(result)) {
+                    return result;
+                }
+            }
+            return null;
         }
     };
 });

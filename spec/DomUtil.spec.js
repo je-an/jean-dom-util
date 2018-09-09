@@ -37,6 +37,42 @@ define([
                 }
             });
         });
+        describe("DomUtil.getChildById", function () {
+            var e;
+            beforeEach(function () {
+                e = DomUtil.createElementFromMarkup('<div> <div class="first1" id="test1"> <div class="second1"></div> <div class="second2"></div> <div class="second3"></div> </div> <div class="first2"> <div class="second1" id="test2"></div> </div> <div class="first3"> <div class="second1"><div class="third1"></div><div class="third2"></div><div class="third3" id="test3"></div></div> </div></div>');
+            })
+            it("returns the child element with the provided id", function () {
+                var t1 = DomUtil.getChildById(e, "test1");
+                var t2 = DomUtil.getChildById(e, "test2");
+                var t3 = DomUtil.getChildById(e, "test3");
+                expect(t1.className).toEqual("first1");
+                expect(t2.className).toEqual("second1");
+                expect(t3.className).toEqual("third3");
+            });
+            it("returns undefined if there is no child for the provided id", function () {
+                var t1 = DomUtil.getChildById(e, "noId");
+                expect(t1).toEqual(null);
+            });
+        });
+        describe("DomUtil.getChildByClass", function () {
+            var e;
+            beforeEach(function () {
+                e = DomUtil.createElementFromMarkup('<div> <div class="first1 a b c" id="test1"> <div class="second1"></div> <div class="second2"></div> <div class="second3"></div> </div> <div class="first2"> <div class="second21" id="test2"></div> </div> <div class="first3"> <div class="second1"><div class="third1"></div><div class="third2"></div><div class="third3" id="test3"></div></div> </div></div>');
+            })
+            it("returns the child element with the provided id", function () {
+                var t1 = DomUtil.getChildByClass(e, "first1");
+                var t2 = DomUtil.getChildByClass(e, "second21");
+                var t3 = DomUtil.getChildByClass(e, "third3");
+                expect(t1.id).toEqual("test1");
+                expect(t2.id).toEqual("test2");
+                expect(t3.id).toEqual("test3");
+            });
+            it("returns undefined if there is no child for the provided class", function () {
+                var t1 = DomUtil.getChildByClass(e, "noId");
+                expect(t1).toEqual(null);
+            });
+        });
     });
 });
 
