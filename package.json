@@ -1,6 +1,6 @@
 {
   "name": "jean-dom-util",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Provides functionality for interaction with DOM elements",
   "main": "dist/jean-dom-util.js",
   "scripts": {

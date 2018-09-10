@@ -85,6 +85,52 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
                 }
             }
             return null;
+        },
+        /**
+         * Gets the first ancestor for the matched id
+         * @param {HTMLElement} element - the element which ancestors shall be searched
+         * @param {String} id - the id of the ancestor which shall be found
+         * @returns {HTMLElement|null} - the matched element or null if no element is found for the
+         *                               provided id 
+         */
+        getAncestorById: function (element, id) {
+            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {
+                Failure.throwTypeError("element is no instance of HTMLElement");
+            }
+            if (!TypeCheck.isString(id)) {
+                Failure.throwTypeError("id is not a string");
+            }
+            if (!TypeCheck.isDefined(element.parentElement)) {
+                return null;
+            }
+            if (element.parentElement.id === id) {
+                return element.parentElement;
+            } else {
+                return this.getAncestorById(element.parentElement, id);
+            }
+        },
+        /**
+         * Gets the first ancestor for the matched class
+         * @param {HTMLElement} element - the element which ancestors shall be searched
+         * @param {String} className - the class name of the child which shall be found
+         * @returns {HTMLElement|null} - the matched element or null if not element is found
+         *                               for the provided class name
+         */
+        getAncestorByClass: function (element, className) {
+            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {
+                Failure.throwTypeError("element is no instance of HTMLElement");
+            }
+            if (!TypeCheck.isString(className)) {
+                Failure.throwTypeError("className is not a string");
+            }
+            if (!TypeCheck.isDefined(element.parentElement)) {
+                return null;
+            }
+            if (element.parentElement.classList.contains(className)) {
+                return element.parentElement;
+            } else {
+                return this.getAncestorById(element.parentElement, className);
+            }
         }
     };
 });
