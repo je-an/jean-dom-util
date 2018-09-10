@@ -54,6 +54,20 @@ define([
                 var t1 = DomUtil.getChildById(e, "noId");
                 expect(t1).toEqual(null);
             });
+            it("throws type error if no HTMLElement is passed", function () {
+                try {
+                    DomUtil.getChildById(undefined, "id");
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+            it("throws type error if no id is passed", function () {
+                try {
+                    DomUtil.getChildById(e, undefined);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
         });
         describe("DomUtil.getChildByClass", function () {
             var e;
@@ -71,6 +85,20 @@ define([
             it("returns undefined if there is no child for the provided class", function () {
                 var t1 = DomUtil.getChildByClass(e, "noId");
                 expect(t1).toEqual(null);
+            });
+            it("throws type error if no HTMLElement is passed", function () {
+                try {
+                    DomUtil.getChildById(undefined, "className");
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
+            });
+            it("throws type error if no className is passed", function () {
+                try {
+                    DomUtil.getChildById(e, undefined);
+                } catch (e) {
+                    expect(e instanceof TypeError).toBe(true);
+                }
             });
         });
     });

@@ -36,6 +36,12 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
          *                               provided id 
          */
         getChildById: function (element, id) {
+            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {
+                Failure.throwTypeError("element is no instance of HTMLElement");
+            }
+            if (!TypeCheck.isString(id)) {
+                Failure.throwTypeError("id is not a string");
+            }
             var i, childs = element.children, length = childs.length, child, result = null;
             for (i = 0; i < length; i++) {
                 child = childs[i];
@@ -59,6 +65,12 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
          *                               for the provided class name
          */
         getChildByClass: function (element, className) {
+            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {
+                Failure.throwTypeError("element is no instance of HTMLElement");
+            }
+            if (!TypeCheck.isString(className)) {
+                Failure.throwTypeError("className is not a string");
+            }
             var i, childs = element.children, length = childs.length, child, result = null;
             for (i = 0; i < length; i++) {
                 child = childs[i];
