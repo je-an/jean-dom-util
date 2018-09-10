@@ -122,14 +122,14 @@ define([
 
             it("throws type error if no HTMLElement is passed", function () {
                 try {
-                    DomUtil.getChildById(undefined, "id");
+                    DomUtil.getAncestorById(undefined, "id");
                 } catch (e) {
                     expect(e instanceof TypeError).toBe(true);
                 }
             });
             it("throws type error if no id is passed", function () {
                 try {
-                    DomUtil.getChildById(e, undefined);
+                    DomUtil.getAncestorById(e, undefined);
                 } catch (e) {
                     expect(e instanceof TypeError).toBe(true);
                 }
@@ -156,14 +156,14 @@ define([
 
             it("throws type error if no HTMLElement is passed", function () {
                 try {
-                    DomUtil.getChildById(undefined, "id");
+                    DomUtil.getAncestorByClass(undefined, "id");
                 } catch (e) {
                     expect(e instanceof TypeError).toBe(true);
                 }
             });
             it("throws type error if no id is passed", function () {
                 try {
-                    DomUtil.getChildById(e, undefined);
+                    DomUtil.getAncestorByClass(e, undefined);
                 } catch (e) {
                     expect(e instanceof TypeError).toBe(true);
                 }

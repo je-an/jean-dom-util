@@ -9,7 +9,15 @@ Supports AMD eco system. If there is no loader, DomUtil is registered as a brows
 - Use it as browser variable
 ```js
 // Create an element
-var element = DomUtil.createElementFromMarkup("<div> <div id='first'> <div id='second'> <div class='third'></div> </div> </div></div>");
+var element = DomUtil.createElementFromMarkup(
+        "<div class='master'>" + 
+            "<div id='first'>" +
+                "<div id='second'>" +
+                    "<div class='third'></div>" +
+                "</div>" +
+            "</div>" +
+        "</div>"
+);
 // Append it to DOM for viewport test
 document.body.appendChild(element);
 // Test if element is part of the viewport
@@ -18,6 +26,10 @@ DomUtil.isInViewPort(element) // true
 var e = DomUtil.getChildById(element, "second");
 // Get element with class "third"
 var c = DomUtil.getChildByClass(element, "third");
+// Get ancestor with id "first"
+var a = DomUtil.getAncestorById(c, "first");
+// Get ancestor with class "master"
+var m = DomUtil.getAncestorByClass(c, "master");
 ```
 - Use it with require.js
 ```js
@@ -51,7 +63,7 @@ require(["path/to/DomUtil"], function(DomUtil){
 ### DomUtil.getChildById(element, id) 
 
 **Parameters**
-- **element**: `HTMLElement` - the element which shall be check 
+- **element**: `HTMLElement` - the element which childs shall be searched
 - **id**: `String` - the id of the child which shall be found 
 
 **Returns**
@@ -62,6 +74,24 @@ require(["path/to/DomUtil"], function(DomUtil){
 **Parameters**
 - **element**: `HTMLElement` - the element which childs shall be searched 
 - **className**: `String` - the class name of the child which shall be found
+
+**Returns**
+- `HTMLElement|null` - the matched element or null if no element is found for the provided class name
+
+### DomUtil.getAncestorById(element, id) 
+
+**Parameters**
+- **element**: `HTMLElement` - the element which ancestors shall be searched
+- **id**: `String` - the id of the ancestor which shall be found
+
+**Returns**
+- `HTMLElement|null` - the matched element or null if no element is found for the provided id 
+
+### DomUtil.getAncestorByClass(element, className) 
+
+**Parameters**
+- **element**: `HTMLElement` -  the element which ancestors shall be searched
+- **className**: `String` - the class name of the ancestor which shall be found
 
 **Returns**
 - `HTMLElement|null` - the matched element or null if no element is found for the provided class name

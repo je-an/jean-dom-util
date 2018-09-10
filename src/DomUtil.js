@@ -108,11 +108,11 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
             } else {
                 return this.getAncestorById(element.parentElement, id);
             }
-        },
+        }, 
         /**
          * Gets the first ancestor for the matched class
          * @param {HTMLElement} element - the element which ancestors shall be searched
-         * @param {String} className - the class name of the child which shall be found
+         * @param {String} className - the class name of the ancestor which shall be found
          * @returns {HTMLElement|null} - the matched element or null if not element is found
          *                               for the provided class name
          */
