@@ -22,11 +22,11 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
          * @returns {Boolean} - True if element is within the viewport, false otherwise
          */
         isInViewPort: function (element) {
-            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {
+            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {  
                 Failure.throwTypeError("element is not an instance of HTMLElement");
             }
-            var bounds = element.getBoundingClientRect();
-            return ((bounds.top + bounds.height) > 0) && bounds.top < window.innerHeight;
+            var bounds = element.getBoundingClientRect(), isInViewPort = ((bounds.top + bounds.height) > 0) && bounds.top < window.innerHeight;
+            return isInViewPort;
         },
         /**
          * gets the child for the matched id
@@ -108,7 +108,7 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
             } else {
                 return this.getAncestorById(element.parentElement, id);
             }
-        }, 
+        },
         /**
          * Gets the first ancestor for the matched class
          * @param {HTMLElement} element - the element which ancestors shall be searched

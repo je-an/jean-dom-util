@@ -5,6 +5,9 @@ Provides utility functions for DOM elements
 ## Support
 Supports AMD eco system. If there is no loader, DomUtil is registered as a browser variable.
 
+## Warning
+Do not use it in Internet Explorer 11 or lower
+
 ## Code Example
 - Use it as browser variable
 ```js
