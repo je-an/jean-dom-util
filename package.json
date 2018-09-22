@@ -1,18 +1,23 @@
 {
   "name": "jean-dom-util",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Provides functionality for interaction with DOM elements",
   "main": "dist/jean-dom-util.js",
   "scripts": {
     "test": "open spec/spec-runner.html in browser"
   },
-  "keywords": ["DOM", "HTMLElement", "recursive", "searching"],
+  "keywords": [
+    "DOM",
+    "HTMLElement",
+    "recursive",
+    "searching"
+  ],
   "author": "Jeremias Andris",
   "license": "MIT",
   "dependencies": {
     "jean-amd": "^1.0.3",
     "jean-failure": "^1.0.1",
-    "jean-type-check": "^1.1.7"
+    "jean-type-check": "^1.5.1"
   },
   "repository": {
     "type": "git",
