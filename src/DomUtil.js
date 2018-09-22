@@ -129,7 +129,7 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
             if (element.parentElement.classList.contains(className)) {
                 return element.parentElement;
             } else {
-                return this.getAncestorById(element.parentElement, className);
+                return this.getAncestorByClass(element.parentElement, className);
             }
         }
     };
