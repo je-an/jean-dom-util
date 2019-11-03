@@ -22,7 +22,7 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
          * @returns {Boolean} - True if element is within the viewport, false otherwise
          */
         isInViewPort: function (element) {
-            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {  
+            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {
                 Failure.throwTypeError("element is not an instance of HTMLElement");
             }
             var bounds = element.getBoundingClientRect(), isInViewPort = ((bounds.top + bounds.height) > 0) && bounds.top < window.innerHeight;
@@ -131,6 +131,36 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
             } else {
                 return this.getAncestorByClass(element.parentElement, className);
             }
-        }
+        },
+        /**
+         * Gets the coordinates of plain html element
+         * @param {HTMLElement} element - plain html element object
+         * @returns {Object} - { top: Number, right: Number, bottom: Number, left: Number }
+         */
+        getElementCoordinates: function (element) {
+            if (!TypeCheck.isInstanceOf(element, HTMLElement)) {
+                Failure.throwTypeError("element is no instance of HTMLElement");
+            }
+
+            var box = element.getBoundingClientRect(),
+                body = document.body,
+                docEl = document.documentElement,
+                scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop,
+                scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft,
+                clientTop = docEl.clientTop || body.clientTop || 0,
+                clientLeft = docEl.clientLeft || body.clientLeft || 0,
+                top = box.top + scrollTop - clientTop,
+                left = box.left + scrollLeft - clientLeft;
+
+            var docWidth = $(document).width(),
+                docHeight = $(document).height(),
+                elemWidth = $(element).width(),
+                borderWidth = 1 * 2,
+                left = left + elemWidth + borderWidth,
+                right = docWidth - left + elemWidth + borderWidth,
+                bottom = docHeight - box.bottom;
+
+            return { top: Math.round(top), right: Math.round(right), bottom: Math.round(bottom), left: Math.round(left) };
+        },
     };
 });

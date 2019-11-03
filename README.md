@@ -99,6 +99,14 @@ require(["path/to/DomUtil"], function(DomUtil){
 **Returns**
 - `HTMLElement|null` - the matched element or null if no element is found for the provided class name
 
+### DomUtil.getElementCoordinates(element) 
+
+**Parameters**
+- **element**: `HTMLElement` -  the element for which the coordinates are needed
+
+**Returns**
+- `Object` - { top: Number, right: Number, bottom: Number, left: Number }
+
 ## Tests
 
 - Open spec/spec-runner.html in browser to see the test cases.
