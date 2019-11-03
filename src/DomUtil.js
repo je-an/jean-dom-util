@@ -153,7 +153,7 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
                 left = box.left + scrollLeft - clientLeft;
 
             var docWidth = document.clientWidth,
-                docHeight = $document.clientHeight,
+                docHeight = document.clientHeight,
                 elementWidth = element.clientWidth,
                 borderWidth = 1 * 2,
                 left = left + elementWidth + borderWidth,
