@@ -152,12 +152,12 @@ define(["TypeCheck", "Failure"], function (TypeCheck, Failure) {
                 top = box.top + scrollTop - clientTop,
                 left = box.left + scrollLeft - clientLeft;
 
-            var docWidth = $(document).width(),
-                docHeight = $(document).height(),
-                elemWidth = $(element).width(),
+            var docWidth = document.clientWidth,
+                docHeight = $document.clientHeight,
+                elementWidth = element.clientWidth,
                 borderWidth = 1 * 2,
-                left = left + elemWidth + borderWidth,
-                right = docWidth - left + elemWidth + borderWidth,
+                left = left + elementWidth + borderWidth,
+                right = docWidth - left + elementWidth + borderWidth,
                 bottom = docHeight - box.bottom;
 
             return { top: Math.round(top), right: Math.round(right), bottom: Math.round(bottom), left: Math.round(left) };
